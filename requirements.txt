@@ -1,0 +1,15 @@
+# Direct dependencies for a pip install:  pip install -r requirements.txt
+# (uv.lock holds the exact transitive pins used for the paper; `uv sync` reproduces them.)
+
+# Regenerate paper numbers and figures from the committed runs/*.jsonl (lightweight):
+numpy>=2.0.2
+scipy>=1.11
+plotnine>=0.13
+
+# Retrain / run the model locally (experiments.run_local, swap/decode/oracle probes):
+torch>=2.8.0
+xlstm==2.0.0
+pogo-torch>=0.1.0
+
+# Cloud sweeps only (experiments/modal_app.py); not needed for local reproduction:
+modal>=1.0

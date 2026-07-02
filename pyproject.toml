@@ -1,0 +1,21 @@
+[project]
+name = "memrec"
+version = "0.1.0"
+description = "Orthogonalization experiments for recurrent memory (mLSTM) on MAD noisy recall"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0.2",
+    "torch>=2.8.0",
+    "xlstm==2.0.0",
+    "pogo-torch>=0.1.0",
+    "modal>=1.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["memrec*"]
+
+[dependency-groups]
+dev = [
+    "plotnine>=0.15.7",
+]
