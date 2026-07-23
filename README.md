@@ -1,11 +1,12 @@
 # The Orthogonalized Read Is a Removable Training Scaffold for Recurrent Memory
 
 Code, per-seed results, and the manuscript for a validation and mechanism study of
-**"Matrix Orthogonalization Improves Memory in Recurrent Models"** (Tambde, 2026) —
+**"Matrix Orthogonalization Improves Memory in Recurrent Models"** (Tambde, 2026):
 an mLSTM whose matrix memory is orthogonalized at read time by Newton–Schulz
 iterations, evaluated on MAD noisy associative recall.
 
-**Paper:** [`paper/main.pdf`](paper/main.pdf)
+**Paper:** [arXiv:2607.19390](https://arxiv.org/abs/2607.19390) ·
+[`paper/main.pdf`](paper/main.pdf)
 
 ## What we find
 
@@ -26,7 +27,7 @@ properties:
 Much of the published gain needs no architecture at all: solved-rate at a fixed budget
 measures *escape hazard*, which follows a heat/noise law (learning-rate elasticity +3.0,
 gradient-noise elasticity −1.65). Decoding the memory state directly shows failed models
-carry roughly half their associations in linearly recoverable form — the plateau is a
+carry roughly half their associations in linearly recoverable form: the plateau is a
 readout failure over half-written storage. Two broader conclusions are developed in the
 paper: recall benchmarks used for architecture selection partly measure trainability,
 and the system is a fully instrumented model organism of "emergence."
@@ -96,10 +97,13 @@ vocab-96 batch-64 arm uses an A100 (set `MEMREC_GPU=A100-40GB`).
 
 ```bibtex
 @misc{aquinomichaels2026scaffold,
-  title  = {The Orthogonalized Read Is a Removable Training Scaffold for Recurrent Memory},
-  author = {Aquino-Michaels, Keston},
-  year   = {2026},
-  note   = {arXiv preprint; see paper/main.pdf}
+  title         = {The Orthogonalized Read Is a Removable Training Scaffold for Recurrent Memory},
+  author        = {Aquino-Michaels, Keston},
+  year          = {2026},
+  eprint        = {2607.19390},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2607.19390}
 }
 ```
 
