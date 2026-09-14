@@ -247,7 +247,7 @@ def fig_rank():
          + facet_wrap("~panel")
          + scale_x_continuous(breaks=[0, 1000, 2000])
          + labs(x="training step", y="effective rank of memory C",
-                title="Rank collapse is a symptom, not the cause (16 seeds/panel)")
+                title="Memory effective rank during training (16 seeds/panel)")
          + theme_paper())
     p += annotate("text", x=1150, y=13.3, label="escaped", color=ocol["escaped"], size=8, ha="left")
     p += annotate("text", x=1150, y=1.2, label="stuck", color="#8a887f", size=8, ha="left")

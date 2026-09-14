@@ -6,31 +6,38 @@ an mLSTM whose matrix memory is orthogonalized at read time by Newton–Schulz
 iterations, evaluated on MAD noisy associative recall.
 
 **Paper:** [arXiv:2607.19390](https://arxiv.org/abs/2607.19390) ·
-[`paper/main.pdf`](paper/main.pdf)
+[`paper/main.pdf`](paper/main.pdf) (17 pages, 8 figures)
+
+**arXiv v3 files:** [submission package](paper/arxiv-submission-v3.tar.gz) ·
+[plain-text abstract](paper/arxiv-abstract-v3.txt)
 
 ## What we find
 
-The published effect replicates, but it is not a memory improvement. Training on this
-task is a long chance plateau followed by a sharp escape, and the orthogonalized read
-works by re-conditioning the learning problem *during* the plateau. It has three
-properties:
+We replicate the recall improvement and identify the orthogonalized read as a
+removable training scaffold. Training on MAD noisy recall exhibits a long
+chance-level plateau followed by a sharp increase in accuracy. The orthogonalized
+read improves conditioning during this plateau and can be removed after escape.
+The experiments support three findings:
 
-- **Self-consistent.** An exact recursive least-squares read (the Mesa layer) reproduces
-  it; straight-through halves, delta-rule writes, frozen random keys, and plain
-  normalization all fail.
-- **Uniform.** Across a learning-rate × hardness grid it multiplies the escape hazard
-  ~6× with no detectable hardness dependence, widening the workable learning-rate
-  corridor that narrows for the baseline.
-- **Removable.** It rescues no failed model at inference, and annealed away on an
-  escape-triggered schedule it leaves a numerically stock mLSTM at full accuracy.
+- **Self-consistency.** An exact recursive least-squares read (the Mesa layer)
+  yields a similar benefit. Straight-through variants, delta-rule writes, frozen
+  random keys, and Frobenius normalization show no improvement over baseline.
+- **Escape dynamics.** Across a learning-rate × task-difficulty grid,
+  orthogonalization multiplies escape hazard roughly six-fold, with no detectable
+  dependence on difficulty, and widens the range of learning rates that produce
+  successful runs.
+- **Removal after training.** Adding orthogonalization at inference leaves
+  chance-level failures unresolved. Removing it gradually after escape yields
+  standard mLSTMs at near-perfect accuracy.
 
-Much of the published gain needs no architecture at all: solved-rate at a fixed budget
-measures *escape hazard*, which follows a heat/noise law (learning-rate elasticity +3.0,
-gradient-noise elasticity −1.65). Decoding the memory state directly shows failed models
-carry roughly half their associations in linearly recoverable form: the plateau is a
-readout failure over half-written storage. Two broader conclusions are developed in the
-paper: recall benchmarks used for architecture selection partly measure trainability,
-and the system is a fully instrumented model organism of "emergence."
+Schedule changes alone recover much of the reported gain. A batch-size ×
+learning-rate analysis separates the effects of per-step learning rate and gradient
+noise on escape hazard (elasticities +3.0 and −1.65, respectively). Direct decoding
+of the memory state recovers roughly half of the associations in behaviorally
+failed models, indicating a readout-learning limitation despite substantial stored
+information. These results show that fixed-budget recall benchmarks are sensitive
+to trainability and provide a tractable setting for investigating abrupt
+behavioral transitions through measurements of internal representations.
 
 ## Layout
 
@@ -45,7 +52,8 @@ and the system is a fully instrumented model organism of "emergence."
   and probe telemetry. Every number in the paper regenerates from these.
 - `runs/ckpts/` — final checkpoints for the replication sweep (used by the swap, decode,
   and oracle probes).
-- `paper/` — LaTeX source, `refs.bib`, figures, and the compiled PDF.
+- `paper/` — LaTeX source, `refs.bib`, figures, the compiled PDF, and arXiv v3
+  submission files.
 
 ## Install
 
